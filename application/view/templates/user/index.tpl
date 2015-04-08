@@ -7,6 +7,7 @@
     {
 
         $.ajax({
+
             url : "index.php?controller=user&action=indexAjax",
             type : "post",
             dataType:"json",
@@ -17,14 +18,36 @@
                 limit:limit
             },
             success : function (result){
-                //alert('abc');die();
+
                 $('#data').html(result.data);
                 $('#phantrang').html(result.phantrang);
             }
         });
     }
+    $(function(){
+        $('#chinhsua').click(function(){
+            var arr=[];
+            $('input:checked').each(function(){
+                arr.push($(this).val());
+            });
+            if(arr !=''){
+               window.location= 'index.php?controller=user&action=update&id='+arr[0];
+            }
+        });
+        $('#Xoa').click(function(){
+            str=''
+            $('input:checked').each(function(){
+                str+= $(this).val()+',';
+            });
+            if(str!=''){
+                str= str.substr(0,str.length-1);
+                window.location= "index.php?controller=user&action=delete&listid="+str;
+            }
+        });
+    });
 </script>
 <form >
+
     <div id="button">
         <ul>
             <li><input type="button" name="themmoi" id="themmoi" value="Them Moi +" /></li>
@@ -54,7 +77,7 @@
             {foreach $users as $item}
                 <tr>
 
-                    <td><input type="checkbox" /></td>
+                    <td><input type="checkbox" value="{$item->id}" /></td>
                     <td>{$item->username}</td>
                     <td>{$item->password}</td>
                     <td>{$item->fullname}</td>

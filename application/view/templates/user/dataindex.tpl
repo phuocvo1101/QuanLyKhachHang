@@ -1,7 +1,7 @@
 {foreach $users as $item}
     <tr>
 
-        <td><input type="checkbox" /></td>
+        <td><input type="checkbox" value="{$item->id}" /></td>
         <td>{$item->username}</td>
         <td>{$item->password}</td>
         <td>{$item->fullname}</td>

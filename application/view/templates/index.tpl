@@ -21,7 +21,7 @@
 			<ul>
 				<li><a href="index.php?controller=user&action=index">Quan ly Thanh Vien</a>
 					<ul>
-						<li><a href="#">Them Moi Thanh Vien</a></li>
+						<li><a href="index.php?controller=user&action=create">Them Moi Thanh Vien</a></li>
 						<li><a href="#">Them Thong Tin Thanh Vien</a></li>
 					</ul>
 				</li>
