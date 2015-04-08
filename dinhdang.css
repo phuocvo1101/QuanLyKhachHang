@@ -1,0 +1,111 @@
+/* CSS Document */
+body{
+background-color:#000000;
+padding:20px;}
+#nen{
+background-color:#FFFFFF;
+height:100px;
+width:400px;
+}
+#contrainer{
+background-color:#FFFFFF;
+width:100%;
+height:100%;
+padding:20;}
+#noidung{
+background-color:#FFFFFF;
+width:100%;
+height:100%;
+
+}
+#top{
+float:right;
+padding-right:15px;
+}
+#top ul li
+{
+	list-style:none;
+	float:left;
+	color:#000000;
+	list-style:none;
+	text-align:right;
+	padding-right:15px;
+	
+}
+#menu{
+float:left;
+border:1px #000000 solid;
+width:100%;
+background-color:#FFCC99;
+}
+#menu ul li{
+float:left;
+list-style:none;
+padding-right:15px;
+padding-left:15px;
+border-right:#000000 1px solid;
+color:#FFFFFF;
+}
+#menu a
+{
+color:#FFFFFF;
+text-decoration:none;
+}
+#menu ul li:hover ul
+{
+	display:block;
+	
+}
+#menu ul li ul {
+	background-color:#000000;
+    display: none;
+    float: none;
+    margin-left: -5px;
+    padding-left: 5px;
+    padding-top: 10px;
+    position: absolute;
+    width: 250px;
+}
+#menu ul li ul li:hover
+{
+	background:#FF0000;
+	margin-right:3px;
+	margin-bottom:3px;
+	 font-weight: bold;
+    height: 20px;
+   
+}	
+#button{
+float:right;
+border:none;
+width:100%
+}
+
+#button ul{
+float:right;
+}
+#button ul li{
+float:left;
+list-style:none;
+padding:20px;
+}
+#tieude{
+font-family:Arial, Helvetica, sans-serif;
+font-size:24px;
+font-weight:bold;
+padding-left:15px;}
+#tieude1{
+font-family:Arial, Helvetica, sans-serif;
+font-size:24px;
+padding-left:15px;}
+
+#danhsach tr td{
+border:1px #000000 solid;
+text-align:center}
+#tablethanhvien{
+padding:15px;}
+#themthanhvien{
+border:1px #000000 solid;
+background-color:#CCCCCC;
+width:500px;
+height:180px;}
