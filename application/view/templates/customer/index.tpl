@@ -6,6 +6,7 @@
     {
 
         $.ajax({
+
             url : "index.php?controller=customer&action=indexAjax",
             type : "post",
             dataType:"json",
@@ -16,7 +17,7 @@
                 limit:limit
             },
             success : function (result){
-                //alert('abc');die();
+               // alert('abc');die();
                 $('#data').html(result.data);
                 $('#phantrang').html(result.phantrang);
             }
