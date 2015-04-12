@@ -30,11 +30,15 @@
         <table id="themthanhvien">
             <tr>
                 <td align="right">UserName:</td>
-                <td><input type="text" value="{if isset($username)}{$username}{/if}" id="username" name="username" size="45px" /></td>
+                <td><input type="text"  id="username" name="username" size="45px" /></td>
             </tr>
             <tr>
                 <td align="right">PassWord:</td>
                 <td><input type="password"  value="{if isset($password)}{$password}{/if}"   name="password" id="password" /></td>
+            </tr>
+            <tr>
+                <td align="right">Xác Nhận PassWord:</td>
+                <td><input type="password" value="{if isset($xnpassword)}{$xnpassword}{/if}"  name="xnpassword" id="xnpassword" /></td>
             </tr>
             <tr>
                 <td align="right">FullName:</td>
@@ -43,6 +47,15 @@
             <tr>
                 <td align="right">Email:</td>
                 <td><input type="text" value="{if isset($email)}{$email}{/if}" id="email" name="email" size="30px" /></td>
+            </tr>
+            <tr>
+                <td align="right">Loại User:</td>
+                <td>
+                    <select id="loaiuser" name="loaiuser">
+                        <option value="admin" selected="selected">admin</option>
+                        <option value="thanhvien">Thanh Vien</option>
+                    </select>
+                </td>
             </tr>
 
 

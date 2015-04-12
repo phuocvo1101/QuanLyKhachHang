@@ -23,7 +23,10 @@
             }
         });
     }
-
+    function themmoicustomer()
+    {
+        window.location= 'index.php?controller=customer&action=create';
+    }
 
     $(function(){
         $('#chinhsua').click(function(){
@@ -57,7 +60,7 @@
 <form >
 		<div id="button">
 			<ul>
-				<li><input type="button" name="themmoi" id="themmoi" value="Them Moi +" /></li>
+				<li><input type="button" onclick="themmoicustomer();" name="themmoi" id="themmoi" value="Them Moi +" /></li>
 				<li><input type="button" name="chinhsua" id="chinhsua" value="Chinh Sua" /></li>
 				<li><input type="button" name="Xoa" id="Xoa" value="Xoa" /></li>
 			</ul>
@@ -79,7 +82,7 @@
 					<td>Điện thoại</td>
                     <td>Email</td>
                     <td>Quận/Huyện</td>
-                    <td>User</td>
+                    <td>Nhóm Khách Hàng</td>
 					<td>ID</td>
 				</tr>
                 </thead>
@@ -100,7 +103,7 @@
                             <td>{$customer->DienThoai}</td>
                             <td>{$customer->Email}</td>
                             <td>{$customer->TenQuanHuyen}</td>
-                            <td>{$customer->idUser}</td>
+                            <td>{$customer->TenNhomKH}</td>
                             <td>{$customer->idKH}</td>
                         </tr>
                     {/foreach}

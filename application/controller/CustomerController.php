@@ -67,6 +67,8 @@ class CustomerController extends  BaseController
     {
        $districts = $this->customerModel->getDistricts();
         $this->template->assign('districts',$districts);
+        $nhomKHs = $this->customerModel->getNhomKhachHang();
+        $this->template->assign('nhomKHs',$nhomKHs);
         if(!isset($_POST['submitCreate'])) {
 
             return $this->template->fetch('customer/create.tpl');
@@ -78,6 +80,7 @@ class CustomerController extends  BaseController
         $address = isset($_POST['address']) ? $_POST['address'] : '';
         $phonenumber = isset($_POST['phonenumber']) ? $_POST['phonenumber'] : '';
         $district = isset($_POST['district']) ? $_POST['district'] : 0;
+        $nhomKH = isset($_POST['nhomKH']) ? $_POST['nhomKH'] : 0;
 
         $this->template->assign('customername',$customername);
         $this->template->assign('sex',$sex);
@@ -85,6 +88,7 @@ class CustomerController extends  BaseController
         $this->template->assign('address',$address);
         $this->template->assign('phonenumber',$phonenumber);
         $this->template->assign('district',$district);
+        $this->template->assign('nhomKH',$nhomKH);
         $arrError = array();
         if($customername=='') {
             $arrError[] = 'Bạn chưa nhập username';
@@ -104,8 +108,11 @@ class CustomerController extends  BaseController
 
         if($district==0) {
             $arrError[] = 'Bạn chưa chọn quận/huyện';
-        }
 
+        }
+        if($nhomKH==0) {
+            $arrError[] = 'Bạn chưa chọn Nhóm Khách Hàng';
+        }
         if(!empty($arrError)) {
             $this->template->assign('errors',$arrError);
             return $this->template->fetch('customer/create.tpl');
@@ -119,7 +126,7 @@ class CustomerController extends  BaseController
         $params['DienThoai'] = $phonenumber;
         $params['Email'] = $email;
         $params['idQuanHuyen'] = $district;
-        $params['idUser'] = $_SESSION['userid'];
+        $params['idNhomKH']= $nhomKH;
 
         $result = $this->customerModel->creatCustomer($params);
         if(!result) {
@@ -148,6 +155,8 @@ class CustomerController extends  BaseController
         $districts = $this->customerModel->getDistricts();
         $this->template->assign('districts',$districts);
 
+        $nhomKHs = $this->customerModel->getNhomKhachHang();
+        $this->template->assign('nhomKHs',$nhomKHs);
 
         if(!isset($_POST['submitUpdate'])) {
             $this->template->assign('id',$id);
@@ -166,6 +175,7 @@ class CustomerController extends  BaseController
         $address = isset($_POST['address']) ? $_POST['address'] : '';
         $phonenumber = isset($_POST['phonenumber']) ? $_POST['phonenumber'] : '';
         $district = isset($_POST['district']) ? $_POST['district'] : 0;
+        $nhomKH = isset($_POST['nhomKH']) ? $_POST['nhomKH'] : 0;
 
         $this->template->assign('customername',$customername);
         $this->template->assign('sex',$sex);
@@ -173,6 +183,7 @@ class CustomerController extends  BaseController
         $this->template->assign('address',$address);
         $this->template->assign('phonenumber',$phonenumber);
         $this->template->assign('district',$district);
+        $this->template->assign('nhomKH',$nhomKH);
 
         $arrError = array();
         if($customername=='') {
@@ -194,6 +205,9 @@ class CustomerController extends  BaseController
         if($district==0) {
             $arrError[] = 'Bạn chưa chọn quận/huyện';
         }
+        if($nhomKH==0) {
+            $arrError[] = 'Bạn chưa chọn Nhóm Khách Hàng';
+        }
 
         if(!empty($arrError)) {
             $this->template->assign('errors',$arrError);
@@ -208,8 +222,8 @@ class CustomerController extends  BaseController
         $params['DienThoai'] = $phonenumber;
         $params['Email'] = $email;
         $params['idQuanHuyen'] = $district;
-        $params['idUser'] = $_SESSION['userid'];
         $params['idKH'] = $id;
+        $params['idNhomKH']= $nhomKH;
 
         $result = $this->customerModel->updateCustomer($params);
         if(!result) {
