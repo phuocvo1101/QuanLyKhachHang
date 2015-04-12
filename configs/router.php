@@ -12,6 +12,12 @@ $content = "";
 			case "user":
 				$basecontroller = new UserController();
 				break;
+            case "group":
+                $basecontroller = new GroupController();
+                break;
+            case "order":
+                $basecontroller = new OrderController();
+                break;
 			default:
 				$basecontroller = new CustomerController();
 				break;	
@@ -23,6 +29,9 @@ $content = "";
 			case 'indexajax':
 				$content = $basecontroller->indexAjaxAction();
 				break;
+            case 'indexthanhvien':
+                $content = $basecontroller->indexActionThanhVien();
+                break;
 			case 'view':
 				$content = $basecontroller->viewAction();
 				break;
@@ -36,12 +45,15 @@ $content = "";
 				$content =$basecontroller->createAjaxAction();
 				break;
 			case 'update':
-
 				$content = $basecontroller->updateAction();
 				break;
 			case 'updateajax':
 				$content = $basecontroller->updateAjaxAction();
 				break;
+
+           case 'updatethanhvien':
+               $content = $basecontroller->updateActionThanhVien();
+               break;
 			case 'delete':
 				$content =$basecontroller->deleteAction();
 				break;
@@ -67,7 +79,6 @@ $content = "";
 		$basecontroller = new CustomerController();
 		$content = $basecontroller->indexAction();
 	}	
-	
 
 $template->assign('content',$content);
 $template->display($layout);

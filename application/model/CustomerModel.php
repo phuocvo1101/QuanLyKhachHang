@@ -5,9 +5,10 @@ class CustomerModel extends Database
 	public function getCustomers($start=null,$limit=null)
 	{
 
-		$query="SELECT idKH,TenKH, Phai, DiaChi, DienThoai, Email, kh.idQuanHuyen, idUser,q.TenQuanHuyen
+		$query="SELECT idKH,TenKH, Phai, DiaChi, DienThoai, Email, kh.idQuanHuyen,q.TenQuanHuyen,kh.idNhomKH,nkh.TenNhomKH
 		FROM khachhang kh
 		INNER JOIN quan q ON kh.idQuanHuyen=q.idQuanHuyen
+		INNER JOIN nhomkhachhang nkh ON kh.idNhomKH= nkh.idNhomKH
 		ORDER BY idKH DESC";
         if($start!==null && $limit!==null) {
 
@@ -42,10 +43,18 @@ class CustomerModel extends Database
 
         return $result;
     }
+    public function getNhomKhachHang()
+    {
+        $query="SELECT idNhomKH,TenNhomKH FROM nhomkhachhang  ORDER BY idNhomKH DESC";
+        $this->setquery($query);
+        $result = $this->loadAllRows();
+
+        return $result;
+    }
 
 	public function getCustomer($idKH)
 	{
-        $query="SELECT idKH,TenKH, Phai, DiaChi, DienThoai, Email, kh.idQuanHuyen, idUser,q.TenQuanHuyen
+        $query="SELECT idKH,TenKH, Phai, DiaChi, DienThoai, Email, kh.idQuanHuyen,q.TenQuanHuyen
 		FROM khachhang kh
 		INNER JOIN quan q ON kh.idQuanHuyen=q.idQuanHuyen
 		WHERE kh.idKH=".$idKH;
@@ -57,7 +66,7 @@ class CustomerModel extends Database
 	
 	public function creatCustomer($params)
 	{
-		$query='INSERT INTO khachhang(TenKH,Phai,DiaChi,DienThoai,Email,idQuanHuyen,idUser) VALUES(?,?,?,?,?,?,?)';
+		$query='INSERT INTO khachhang(TenKH,Phai,DiaChi,DienThoai,Email,idQuanHuyen,idNhomKH) VALUES(?,?,?,?,?,?,?)';
         $this->setQuery($query);
 
         $result = $this->execute(array(
@@ -67,7 +76,7 @@ class CustomerModel extends Database
             array($params['DienThoai'],PDO::PARAM_STR),
             array($params['Email'],PDO::PARAM_STR),
             array($params['idQuanHuyen'],PDO::PARAM_INT),
-            array($params['idUser'],PDO::PARAM_INT)
+            array($params['idNhomKH'],PDO::PARAM_INT)
         ));
         if(!$result) {
             return false;
@@ -77,7 +86,7 @@ class CustomerModel extends Database
 	
 	public function updateCustomer($params)
 	{
-        $query='UPDATE khachhang SET TenKH=?,Phai=?,DiaChi=?,DienThoai=?,Email=?,idQuanHuyen=?,idUser=?  WHERE idKH=?';
+        $query='UPDATE khachhang SET TenKH=?,Phai=?,DiaChi=?,DienThoai=?,Email=?,idQuanHuyen=?, idNhomKH=?  WHERE idKH=?';
         $this->setQuery($query);
 
         $result = $this->execute(array(
@@ -87,7 +96,7 @@ class CustomerModel extends Database
             array($params['DienThoai'],PDO::PARAM_STR),
             array($params['Email'],PDO::PARAM_STR),
             array($params['idQuanHuyen'],PDO::PARAM_INT),
-            array($params['idUser'],PDO::PARAM_INT),
+            array($params['idNhomKH'],PDO::PARAM_INT),
             array($params['idKH'],PDO::PARAM_INT)
         ));
 

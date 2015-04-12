@@ -8,7 +8,7 @@
 
         $.ajax({
 
-            url : "index.php?controller=user&action=indexAjax",
+            url : "index.php?controller=group&action=indexAjax",
             type : "post",
             dataType:"json",
 
@@ -24,9 +24,9 @@
             }
         });
     }
-    function themmoiuser()
+    function themmoigroup()
     {
-        window.location= 'index.php?controller=user&action=create';
+        window.location= 'index.php?controller=group&action=create';
     }
     $(function(){
         $('#chinhsua').click(function(){
@@ -35,7 +35,7 @@
                 arr.push($(this).val());
             });
             if(arr !=''){
-               window.location= 'index.php?controller=user&action=update&id='+arr[0];
+               window.location= 'index.php?controller=group&action=update&id='+arr[0];
             }
         });
         $('#Xoa').click(function(){
@@ -45,7 +45,7 @@
             });
             if(str!=''){
                 str= str.substr(0,str.length-1);
-                window.location= "index.php?controller=user&action=delete&listid="+str;
+                window.location= "index.php?controller=group&action=delete&listid="+str;
             }
         });
     });
@@ -54,7 +54,7 @@
 
     <div id="button">
         <ul>
-            <li><input type="button" onclick="themmoiuser();" name="themmoi" id="themmoi" value="Them Moi +" /></li>
+            <li><input type="button" onclick="themmoigroup();" name="themmoi" id="themmoi" value="Them Moi +" /></li>
             <li><input type="button" name="chinhsua" id="chinhsua" value="Chinh Sua" /></li>
             <li><input type="button" name="Xoa" id="Xoa" value="Xoa" /></li>
         </ul>
@@ -63,30 +63,28 @@
 
     <br />
     <div>
-        <p align="center"><label id="tieude">Quan Ly Thanh Vien</label>:<label id="tieude1">Danh Sach Thanh Vien</label></p>
+        <p align="center"><label id="tieude">Quản Lý Nhóm Khách Hàng</label>:<label id="tieude1">Danh Sách Nhóm Khách Hàng</label></p>
     </div>
     <div>
         <table align="center" id="danhsach">
             <thead>
             <tr>
                 <td><input type="checkbox" /></td>
-                <td>Tên Đăng Nhập</td>
-                <td>FullName</td>
-                <td>Email</td>
-                <td>Loại User</td>
-                <td>ID</td>
+                <td>Tên Nhóm Khách Hàng</td>
+                <td>Mô Tả</td>
+                <td>ID Nhóm Khách Hàng</td>
+                <td>Username</td>
             </tr>
             </thead>
             <tbody id="data">
-            {foreach $users as $item}
+            {foreach $groups as $item}
                 <tr>
 
-                    <td><input type="checkbox" value="{$item->id}" /></td>
+                    <td><input type="checkbox" value="{$item->idNhomKH}" /></td>
+                    <td>{$item->TenNHomKH}</td>
+                    <td>{$item->MoTa}</td>
+                    <td>{$item->idNhomKH}</td>
                     <td>{$item->username}</td>
-                    <td>{$item->fullname}</td>
-                    <td>{$item->email}</td>
-                    <td>{$item->loaiuser}</td>
-                    <td>{$item->id}</td>
 
 
                 </tr>

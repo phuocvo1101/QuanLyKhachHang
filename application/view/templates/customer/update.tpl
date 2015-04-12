@@ -57,6 +57,18 @@
                 </select>
             </td>
         </tr>
+        <tr>
+            <td align="right">Nhóm Khách Hàng:</td>
+            <td>
+
+                <select id="nhomKH" name="nhomKH">
+                    {foreach $nhomKHs as $item}
+                        <option value="{$item->idNhomKH}" >{$item->TenNhomKH}</option>
+                    {/foreach}
+                </select>
+
+            </td>
+        </tr>
 
         <input type="hidden" name="id" value="{if isset($id)}{$id}{/if}"/>
     </table>

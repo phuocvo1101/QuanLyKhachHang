@@ -21,6 +21,19 @@ $template->assign('PATH_CSS',PATH_CSS);
 $template->assign('PATH_JS',PATH_JS);
 $template->assign('PATH_IMAGES',PATH_IMAGES);
 
+if(isset($_SESSION['loaiuser'])){
+    $template->assign('loaiuser',$_SESSION['loaiuser']);
+}
+
+if(isset($_SESSION['username'])){
+    $template->assign('username1',$_SESSION['username']);
+}
+
+if(isset($_SESSION['userid'])){
+    $template->assign('userid',$_SESSION['userid']);
+}
+
 include_once (PATH_CONFIG.'controller.php');
 
 include_once (PATH_CONFIG.'router.php');
+//$template->assign('loaiuser',$_SESSION['loaiuser']);

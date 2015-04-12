@@ -1,11 +1,11 @@
 <script type="text/javascript">
     function closeform1()
     {
-        window.location="index.php?controller=user&action=index";
+        window.location="index.php?controller=customer&action=index";
     }
 </script>
 
-<form action="index.php?controller=user&action=update" method="post">
+<form action="index.php?controller=user&action=updatethanhvien" method="post">
     <div id="button">
         <ul>
             <li><input type="submit" name="submitUpdate" id="submitUpdate" value="Luu Va Thoat" /></li>
@@ -15,7 +15,7 @@
     </div>
     <div><br /></div>
     <div>
-        <p><label id="tieude">Thông Tin Thành Viên</p>
+        <p><label id="tieude">Thông Tin Thành Viên</label></p>
     </div>
      <div style="color:red;">
          {if isset($errors)}
