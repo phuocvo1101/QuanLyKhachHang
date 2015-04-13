@@ -138,6 +138,9 @@ class UserModel extends Database
 
     public function deleteUser($id)
     {
+       if(isset($_SESSION['userid']) && $_SESSION['userid']==$id){
+            return false;
+        }
         $queryGroupCustomer = 'SELECT idNhomKH FROM nhomkhachhang WHERE idUser=?';
         $this->setQuery($queryGroupCustomer);
         $groupCustomers = $this->loadAllRows(array(

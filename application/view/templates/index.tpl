@@ -33,16 +33,27 @@
 						<li><a href="index.php?controller=group&action=create">Them Moi Nhom Khach Hang</a></li>
 					</ul>
 				</li>
+
 				<li><a href="index.php?controller=customer&action=index">Quan Ly Khach Hang</a>
 					<ul>
 						<li><a href="index.php?controller=customer&action=create">Them Moi Khach Hang</a></li>
 					</ul>
 				</li>
+
                 <li><a href="index.php?controller=order&action=index">Quan Ly Don Hang</a>
                     <ul>
                         <li><a href="index.php?controller=order&action=create">Thêm Mới Đơn Hàng</a></li>
                     </ul>
                 </li>
+
+                {if isset($loaiuser) && {$loaiuser}==admin}
+                    <li><a href="index.php?controller=product&action=index">Quan Ly San Pham</a>
+                        <ul>
+                            <li><a href="index.php?controller=product&action=create">Thêm Mới Sản Phẩm</a></li>
+                        </ul>
+                    </li>
+                {/if}
+
 			</ul>
 		</div>
 
