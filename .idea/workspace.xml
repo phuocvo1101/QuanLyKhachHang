@@ -23,64 +23,82 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="UserController.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/controller/UserController.php">
+      <file leaf-file-name="index.tpl" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/view/templates/user/index.tpl">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="420" column="35" selection-start="14552" selection-end="14552" vertical-scroll-proportion="0.0" vertical-offset="6818" max-vertical-offset="7378">
+            <state line="54" column="21" selection-start="1399" selection-end="1399" vertical-scroll-proportion="-20.23077" vertical-offset="392" max-vertical-offset="1938">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="UserModel.php" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="UserModel.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/model/UserModel.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="141" column="37" selection-start="4030" selection-end="4030" vertical-scroll-proportion="0.030357143" vertical-offset="2380" max-vertical-offset="3094">
+            <state line="169" column="32" selection-start="5083" selection-end="5083" vertical-scroll-proportion="-12.884615" vertical-offset="2538" max-vertical-offset="3145">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GroupController.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/controller/GroupController.php">
+      <file leaf-file-name="ProductController.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/controller/ProductController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="71" column="29" selection-start="2524" selection-end="2524" vertical-scroll-proportion="0.0" vertical-offset="1207" max-vertical-offset="3043">
+            <state line="135" column="42" selection-start="4819" selection-end="4819" vertical-scroll-proportion="-6.5384617" vertical-offset="2125" max-vertical-offset="2941">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BaseController.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/controller/BaseController.php">
+      <file leaf-file-name="ProductModel.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/model/ProductModel.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="17" column="5" selection-start="510" selection-end="510" vertical-scroll-proportion="0.0" vertical-offset="289" max-vertical-offset="884">
+            <state line="99" column="1" selection-start="2955" selection-end="2955" vertical-scroll-proportion="-20.23077" vertical-offset="1157" max-vertical-offset="1785">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GroupModel.php" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/application/model/GroupModel.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="100" column="32" selection-start="3506" selection-end="3506" vertical-scroll-proportion="0.47309834" vertical-offset="1445" max-vertical-offset="2380">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
       <file leaf-file-name="index.tpl" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/view/templates/user/index.tpl">
+        <entry file="file://$PROJECT_DIR$/application/view/templates/product/index.tpl">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="65" column="28" selection-start="1776" selection-end="1776" vertical-scroll-proportion="0.0" vertical-offset="579" max-vertical-offset="1938">
+            <state line="89" column="0" selection-start="2597" selection-end="2597" vertical-scroll-proportion="-12.384615" vertical-offset="1191" max-vertical-offset="1853">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CustomerController.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/controller/CustomerController.php">
+      <file leaf-file-name="create.tpl" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/view/templates/product/create.tpl">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="249" column="43" selection-start="8843" selection-end="8843" vertical-scroll-proportion="0.0" vertical-offset="4233" max-vertical-offset="4505">
+            <state line="37" column="67" selection-start="1174" selection-end="1174" vertical-scroll-proportion="-16.307692" vertical-offset="205" max-vertical-offset="833">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CustomerModel.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/model/CustomerModel.php">
+      <file leaf-file-name="update.tpl" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/view/templates/product/update.tpl">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="104" column="9" selection-start="3145" selection-end="3145" vertical-scroll-proportion="0.0" vertical-offset="1556" max-vertical-offset="2142">
+            <state line="42" column="10" selection-start="1483" selection-end="1483" vertical-scroll-proportion="-17.307692" vertical-offset="264" max-vertical-offset="850">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="UserController.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/controller/UserController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="416" column="5" selection-start="14376" selection-end="14376" vertical-scroll-proportion="0.0" vertical-offset="7072" max-vertical-offset="7378">
               <folding />
             </state>
           </provider>
@@ -96,22 +114,22 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/application/view/templates/group/create.tpl" />
-        <option value="$PROJECT_DIR$/application/view/templates/group/update.tpl" />
-        <option value="$PROJECT_DIR$/application/controller/GroupController.php" />
-        <option value="$PROJECT_DIR$/application/model/GroupModel.php" />
-        <option value="$PROJECT_DIR$/application/view/templates/index.tpl" />
-        <option value="$PROJECT_DIR$/configs/router.php" />
-        <option value="$PROJECT_DIR$/application/view/templates/order/index.tpl" />
-        <option value="$PROJECT_DIR$/application/view/templates/order/dataindex.tpl" />
-        <option value="$PROJECT_DIR$/application/view/templates/order/listpageindex.tpl" />
-        <option value="$PROJECT_DIR$/application/view/templates/customer/create.tpl" />
         <option value="$PROJECT_DIR$/application/view/templates/order/create.tpl" />
         <option value="$PROJECT_DIR$/application/view/templates/order/update.tpl" />
-        <option value="$PROJECT_DIR$/application/model/OrderModel.php" />
         <option value="$PROJECT_DIR$/application/controller/OrderController.php" />
         <option value="$PROJECT_DIR$/application/controller/UserController.php" />
+        <option value="$PROJECT_DIR$/configs/router.php" />
+        <option value="$PROJECT_DIR$/application/model/CustomerModel.php" />
+        <option value="$PROJECT_DIR$/application/model/OrderModel.php" />
+        <option value="$PROJECT_DIR$/application/view/templates/index.tpl" />
         <option value="$PROJECT_DIR$/application/model/UserModel.php" />
+        <option value="$PROJECT_DIR$/application/view/templates/product/index.tpl" />
+        <option value="$PROJECT_DIR$/application/view/templates/product/dataindex.tpl" />
+        <option value="$PROJECT_DIR$/application/view/templates/product/update.tpl" />
+        <option value="$PROJECT_DIR$/application/view/templates/product/create.tpl" />
+        <option value="$PROJECT_DIR$/application/model/ProductModel.php" />
+        <option value="$PROJECT_DIR$/application/controller/ProductController.php" />
+        <option value="$PROJECT_DIR$/application/model/GroupModel.php" />
       </list>
     </option>
   </component>
@@ -148,7 +166,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -205,41 +222,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="application" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="view" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="templates" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="hethongqlkh" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="hethongqlkh" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="application" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="view" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="templates" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="user" />
+              <option name="myItemId" value="cache" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -313,6 +296,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -326,6 +310,7 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\wamp\www\hethongqlkh\application\view\templates\product" />
       <recent name="C:\wamp\www\hethongqlkh\application\view\templates\order" />
       <recent name="C:\wamp\www\hethongqlkh\application\view\templates\group" />
       <recent name="C:\wamp\www\hethongqlkh\application\view\templates\user" />
@@ -386,7 +371,7 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18667643" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.15446559" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
@@ -415,96 +400,106 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/application/view/templates/customer/index.tpl">
+    <entry file="file://$PROJECT_DIR$/application/view/templates/group/index.tpl">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="73" column="13" selection-start="1930" selection-end="1930" vertical-scroll-proportion="-0.65384614" vertical-offset="1224" max-vertical-offset="2176" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/view/templates/customer/create.tpl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="45" column="13" selection-start="1722" selection-end="1722" vertical-scroll-proportion="-19.73077" vertical-offset="252" max-vertical-offset="1411" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/model/GroupModel.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="88" column="11" selection-start="2864" selection-end="2864" vertical-scroll-proportion="0.3625" vertical-offset="1293" max-vertical-offset="1921" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/view/templates/order/create.tpl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="66" column="17" selection-start="896" selection-end="2484" vertical-scroll-proportion="0.7513711" vertical-offset="711" max-vertical-offset="1326" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/configs/router.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="9" selection-start="600" selection-end="600" vertical-scroll-proportion="0.51428574" vertical-offset="103" max-vertical-offset="1513" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/view/templates/order/update.tpl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="63" column="34" selection-start="2416" selection-end="2416" vertical-scroll-proportion="0.9378428" vertical-offset="558" max-vertical-offset="1326" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/model/OrderModel.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="27" column="0" selection-start="980" selection-end="980" vertical-scroll-proportion="0.0" vertical-offset="459" max-vertical-offset="2244" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/controller/OrderController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="188" column="0" selection-start="6792" selection-end="6792" vertical-scroll-proportion="-20.23077" vertical-offset="2670" max-vertical-offset="3298" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/view/templates/order/index.tpl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="47" column="25" selection-start="1248" selection-end="1248" vertical-scroll-proportion="0.0" vertical-offset="799" max-vertical-offset="1972" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/view/templates/user/index.tpl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="65" column="28" selection-start="1776" selection-end="1776" vertical-scroll-proportion="0.0" vertical-offset="579" max-vertical-offset="1938">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/controller/GroupController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="71" column="29" selection-start="2524" selection-end="2524" vertical-scroll-proportion="0.0" vertical-offset="1207" max-vertical-offset="3043">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/controller/BaseController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="5" selection-start="510" selection-end="510" vertical-scroll-proportion="0.0" vertical-offset="289" max-vertical-offset="884">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/controller/CustomerController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="249" column="43" selection-start="8843" selection-end="8843" vertical-scroll-proportion="0.0" vertical-offset="3876" max-vertical-offset="4505">
+        <state line="46" column="48" selection-start="1206" selection-end="1240" vertical-scroll-proportion="0.6964286" vertical-offset="392" max-vertical-offset="1904">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/application/model/CustomerModel.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="104" column="9" selection-start="3145" selection-end="3145" vertical-scroll-proportion="0.0" vertical-offset="1556" max-vertical-offset="2142">
+        <state line="95" column="60" selection-start="2897" selection-end="2897" vertical-scroll-proportion="0.48392856" vertical-offset="1344" max-vertical-offset="3009" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/controller/OrderController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="7" column="5" selection-start="206" selection-end="206" vertical-scroll-proportion="0.2125" vertical-offset="0" max-vertical-offset="3298" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/model/OrderModel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="102" column="9" selection-start="3259" selection-end="3259" vertical-scroll-proportion="0.48392856" vertical-offset="1463" max-vertical-offset="2720" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/view/templates/index.tpl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="6" column="0" selection-start="325" selection-end="325" vertical-scroll-proportion="-0.65384614" vertical-offset="85" max-vertical-offset="1241">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/controller/GroupController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="68" column="58" selection-start="2442" selection-end="2442" vertical-scroll-proportion="0.45535713" vertical-offset="901" max-vertical-offset="3043" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/view/templates/user/index.tpl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="54" column="21" selection-start="1399" selection-end="1399" vertical-scroll-proportion="-20.23077" vertical-offset="392" max-vertical-offset="1938">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/application/controller/UserController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="420" column="35" selection-start="14552" selection-end="14552" vertical-scroll-proportion="0.0" vertical-offset="6818" max-vertical-offset="7378">
+        <state line="416" column="5" selection-start="14376" selection-end="14376" vertical-scroll-proportion="0.0" vertical-offset="7072" max-vertical-offset="7378">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/view/templates/product/dataindex.tpl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="9" column="10" selection-start="256" selection-end="256" vertical-scroll-proportion="0.27321428" vertical-offset="0" max-vertical-offset="560">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/view/templates/product/update.tpl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="42" column="10" selection-start="1483" selection-end="1483" vertical-scroll-proportion="-17.307692" vertical-offset="264" max-vertical-offset="850">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/view/templates/product/index.tpl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="89" column="0" selection-start="2597" selection-end="2597" vertical-scroll-proportion="-12.384615" vertical-offset="1191" max-vertical-offset="1853">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/view/templates/product/create.tpl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="37" column="67" selection-start="1174" selection-end="1174" vertical-scroll-proportion="-16.307692" vertical-offset="205" max-vertical-offset="833">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/controller/ProductController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="135" column="42" selection-start="4819" selection-end="4819" vertical-scroll-proportion="-6.5384617" vertical-offset="2125" max-vertical-offset="2941">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/model/ProductModel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="99" column="1" selection-start="2955" selection-end="2955" vertical-scroll-proportion="-20.23077" vertical-offset="1157" max-vertical-offset="1785">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/application/model/UserModel.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="141" column="37" selection-start="4030" selection-end="4030" vertical-scroll-proportion="0.030357143" vertical-offset="2380" max-vertical-offset="3094">
+        <state line="169" column="32" selection-start="5083" selection-end="5083" vertical-scroll-proportion="-12.884615" vertical-offset="2538" max-vertical-offset="3145">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/model/GroupModel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="100" column="32" selection-start="3506" selection-end="3506" vertical-scroll-proportion="0.47309834" vertical-offset="1445" max-vertical-offset="2380">
           <folding />
         </state>
       </provider>

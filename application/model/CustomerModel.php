@@ -4,8 +4,47 @@ class CustomerModel extends Database
 
 	public function getCustomers($start=null,$limit=null)
 	{
+        $queryNhomKH= 'SELECT * FROM nhomkhachhang WHERE idUser='.$_SESSION['userid'];
+        $this->setQuery($queryNhomKH);
+        $resultNhomKH= $this->loadAllRows();
 
-		$query="SELECT idKH,TenKH, Phai, DiaChi, DienThoai, Email, kh.idQuanHuyen,q.TenQuanHuyen,kh.idNhomKH,nkh.TenNhomKH
+        $arr= array();
+        foreach($resultNhomKH as $item){
+            $arr[]= $item->idNhomKH;
+        }
+        $str=implode(',',$arr);
+
+        $query="SELECT idKH,TenKH, Phai, DiaChi, DienThoai, Email, kh.idQuanHuyen,q.TenQuanHuyen,kh.idNhomKH,nkh.TenNhomKH
+		FROM khachhang kh
+		INNER JOIN quan q ON kh.idQuanHuyen=q.idQuanHuyen
+		INNER JOIN nhomkhachhang nkh ON kh.idNhomKH= nkh.idNhomKH";
+        if(isset($_SESSION['loaiuser']) && $_SESSION['loaiuser']=='thanhvien'){
+
+                $query= $query.' WHERE kh.idNhomKH IN('.$str.')  ORDER BY idKH DESC';
+
+
+        }else{
+            $query= $query.'  ORDER BY idKH DESC';
+        }
+       // var_dump($query);die();
+        if($start!==null && $limit!==null) {
+
+            $query.=" LIMIT ?, ?";
+        }
+
+        $this->setquery($query);
+        if($start!==null && $limit!==null) {
+            $result = $this->loadAllRows(array(
+                array($start,PDO::PARAM_INT),
+                array($limit,PDO::PARAM_INT)));
+        } else {
+            $result = $this->loadAllRows();
+        }
+        // $this->setQuery($query);
+        //$result = $this->loadAllRows();
+        return $result;
+
+		/*$query="SELECT idKH,TenKH, Phai, DiaChi, DienThoai, Email, kh.idQuanHuyen,q.TenQuanHuyen,kh.idNhomKH,nkh.TenNhomKH
 		FROM khachhang kh
 		INNER JOIN quan q ON kh.idQuanHuyen=q.idQuanHuyen
 		INNER JOIN nhomkhachhang nkh ON kh.idNhomKH= nkh.idNhomKH
@@ -23,7 +62,7 @@ class CustomerModel extends Database
         }
 
 
-        return $result;
+        return $result;*/
 	}
 
     public function getCustomerslimit($start,$limit)
@@ -45,7 +84,19 @@ class CustomerModel extends Database
     }
     public function getNhomKhachHang()
     {
-        $query="SELECT idNhomKH,TenNhomKH FROM nhomkhachhang  ORDER BY idNhomKH DESC";
+        $queryNhomKH= 'SELECT * FROM nhomkhachhang WHERE idUser='.$_SESSION['userid'];
+        $this->setQuery($queryNhomKH);
+        $resultNhomKH= $this->loadAllRows();
+
+        $arr= array();
+        foreach($resultNhomKH as $item){
+            $arr[]= $item->idNhomKH;
+        }
+        $str=implode(',',$arr);
+        $query="SELECT idNhomKH,TenNhomKH FROM nhomkhachhang";
+        if(isset($_SESSION['loaiuser']) && $_SESSION['loaiuser']=='thanhvien'){
+            $query.=' WHERE idNhomKH IN('.$str.')';
+        }
         $this->setquery($query);
         $result = $this->loadAllRows();
 

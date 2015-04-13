@@ -15,6 +15,9 @@ $content = "";
             case "group":
                 $basecontroller = new GroupController();
                 break;
+            case "product":
+                $basecontroller = new ProductController();
+                break;
             case "order":
                 $basecontroller = new OrderController();
                 break;

@@ -1,23 +1,42 @@
 <?php
 class GroupModel extends Database
 {
-    public function getGroups()
+    public function getGroups($start=null,$limit=null)
     {
         $query='select idNhomKH,TenNHomKH,MoTa,nkh.idUser, u.username
         from nhomkhachhang nkh JOIN user u ON nkh.idUser= u.id';
-        $this->setQuery($query);
-        $result = $this->loadAllRows();
+        if(isset($_SESSION['loaiuser']) && $_SESSION['loaiuser']=='thanhvien'){
+            $query= $query.' WHERE idUser='.$_SESSION['userid'].'  ORDER BY idNhomKH DESC';
+        }else{
+            $query= $query.'  ORDER BY idNhomKH DESC';
+        }
+        if($start!==null && $limit!==null) {
+
+            $query.=" LIMIT ?, ?";
+        }
+
+        $this->setquery($query);
+        if($start!==null && $limit!==null) {
+            $result = $this->loadAllRows(array(
+                array($start,PDO::PARAM_INT),
+                array($limit,PDO::PARAM_INT)));
+        } else {
+            $result = $this->loadAllRows();
+        }
+       // $this->setQuery($query);
+        //$result = $this->loadAllRows();
         return $result;
     }
     public function getGroupLimit($start,$limit)
     {
-        $query='select idNhomKH,TenNHomKH,MoTa,nkh.idUser, u.username
+       /* $query='select idNhomKH,TenNHomKH,MoTa,nkh.idUser, u.username
         from nhomkhachhang nkh JOIN user u ON nkh.idUser= u.id ORDER BY idNhomKH desc LIMIT ?,?';
         $this->setQuery($query);
         $result = $this->loadAllRows(array(
             array($start,PDO::PARAM_INT),
             array($limit,PDO::PARAM_INT)
-        ));
+        ));*/
+        $result= $this->getGroups($start,$limit);
 
         return $result;
     }
@@ -35,6 +54,9 @@ class GroupModel extends Database
     public function getUsers()
     {
         $query= 'SELECT id, username, password,fullname,email,loaiuser  from user';
+        if(isset($_SESSION['loaiuser']) && $_SESSION['loaiuser']=='thanhvien'){
+            $query.=' WHERE id='.$_SESSION['userid'];
+        }
         $this->setQuery($query);
         $result= $this->loadAllRows();
         return $result;
@@ -70,6 +92,11 @@ class GroupModel extends Database
     }
     public function deleteGroup($id)
     {
+        $querydeleteKH = 'DELETE FROM khachhang WHERE idNhomKH=?';
+        $this->setQuery($querydeleteKH);
+        $resultdeleteKH= $this->execute(array(
+            array($id,PDO::PARAM_INT)
+        ));
         $query= 'DELETE FROM nhomkhachhang WHERE idNhomKH=?';
         $this->setQuery($query);
         $result = $this->execute(array(

@@ -1,18 +1,40 @@
 <?php
 class OrderModel extends Database
 {
-    public function getOrders()
+    public function getOrders($start=null,$limit=null)
     {
         $query = 'SELECT idDonHang, d.idSanPham, SoLuong, d.idKH,d.idUser,sp.TenSanPham,kh.TenKH,us.username FROM donhang d
          JOIN sanpham sp ON d.idSanPham=sp.idSanPham
           JOIN khachhang kh ON d.idKH=kh.idKH
-          JOIN user us ON d.idUser= us.id ORDER BY idDonHang DESC';
-        $this->setQuery($query);
+          JOIN user us ON d.idUser= us.id';
+        if(isset($_SESSION['loaiuser']) && $_SESSION['loaiuser']=='thanhvien'){
+            $query= $query.' WHERE d.idUser='.$_SESSION['userid'].'  ORDER BY idDonHang DESC';
+        }else{
+            $query= $query.'  ORDER BY idDonHang DESC';
+        }
+        if($start!==null && $limit!==null) {
+
+            $query.=" LIMIT ?, ?";
+        }
+
+        $this->setquery($query);
+        if($start!==null && $limit!==null) {
+            $result = $this->loadAllRows(array(
+                array($start,PDO::PARAM_INT),
+                array($limit,PDO::PARAM_INT)));
+        } else {
+            $result = $this->loadAllRows();
+        }
+        // $this->setQuery($query);
+        //$result = $this->loadAllRows();
+        return $result;
+
+       /* $this->setQuery($query);
         $result= $this->loadAllRows();
         if(!$result){
             return false;
         }
-        return $result;
+        return $result;*/
 
     }
     public function getOrder($id)
@@ -35,7 +57,7 @@ class OrderModel extends Database
 
     public function getOrdersLimit($start,$limit)
     {
-        $query = 'SELECT idDonHang, d.idSanPham, SoLuong, d.idKH,d.idUser,sp.TenSanPham,kh.TenKH,us.username FROM donhang d
+        /*$query = 'SELECT idDonHang, d.idSanPham, SoLuong, d.idKH,d.idUser,sp.TenSanPham,kh.TenKH,us.username FROM donhang d
          JOIN sanpham sp ON d.idSanPham=sp.idSanPham
           JOIN khachhang kh ON d.idKH=kh.idKH
           JOIN user us ON d.idUser= us.id ORDER BY idDonHang DESC LIMIT ?,?';
@@ -47,6 +69,9 @@ class OrderModel extends Database
         if(!$result){
             return false;
         }
+        return $result;*/
+        $result= $this->getOrders($start,$limit);
+
         return $result;
 
     }
@@ -73,6 +98,9 @@ class OrderModel extends Database
     public function getUsers()
     {
         $query = 'SELECT id, username FROM user';
+        if(isset($_SESSION['loaiuser']) && $_SESSION['loaiuser']=='thanhvien'){
+            $query.=' WHERE id='.$_SESSION['userid'];
+        }
         $this->setQuery($query);
         $result= $this->loadAllRows();
         if(!$result){
