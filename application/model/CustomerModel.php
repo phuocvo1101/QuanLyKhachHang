@@ -2,76 +2,95 @@
 class CustomerModel extends Database
 {
 
-	public function getCustomers($start=null,$limit=null)
+	public function getCustomers($search='')
 	{
-        $queryNhomKH= 'SELECT * FROM nhomkhachhang WHERE idUser='.$_SESSION['userid'];
-        $this->setQuery($queryNhomKH);
-        $resultNhomKH= $this->loadAllRows();
 
-        $arr= array();
-        foreach($resultNhomKH as $item){
-            $arr[]= $item->idNhomKH;
-        }
-        $str=implode(',',$arr);
+        $arrSearch=array();
 
-        $query="SELECT idKH,TenKH, Phai, DiaChi, DienThoai, Email, kh.idQuanHuyen,q.TenQuanHuyen,kh.idNhomKH,nkh.TenNhomKH
-		FROM khachhang kh
-		INNER JOIN quan q ON kh.idQuanHuyen=q.idQuanHuyen
-		INNER JOIN nhomkhachhang nkh ON kh.idNhomKH= nkh.idNhomKH";
+        $strUser='';
+        $strLike = '';
         if(isset($_SESSION['loaiuser']) && $_SESSION['loaiuser']=='thanhvien'){
+            $strUser='WHERE u.id = ?';
+            if(!empty($search)){
+                $strLike = 'AND (kh.TenKH like ? OR kh.DienThoai LIKE ? or kh.DiaChi LIKE ?)';
+            }
+            $arrSearch[] = array($_SESSION['userid'],PDO::PARAM_INT);
 
-                $query= $query.' WHERE kh.idNhomKH IN('.$str.')  ORDER BY idKH DESC';
-
-
-        }else{
-            $query= $query.'  ORDER BY idKH DESC';
-        }
-       // var_dump($query);die();
-        if($start!==null && $limit!==null) {
-
-            $query.=" LIMIT ?, ?";
         }
 
-        $this->setquery($query);
-        if($start!==null && $limit!==null) {
-            $result = $this->loadAllRows(array(
-                array($start,PDO::PARAM_INT),
-                array($limit,PDO::PARAM_INT)));
-        } else {
-            $result = $this->loadAllRows();
+        if(isset($_SESSION['loaiuser']) && $_SESSION['loaiuser']=='admin'){
+            $strUser='';
+            if(!empty($search)){
+                $strLike = 'WHERE kh.TenKH like ? OR kh.DienThoai LIKE ? or kh.DiaChi LIKE ?';
+            }
+
         }
-        // $this->setQuery($query);
-        //$result = $this->loadAllRows();
+
+        $query="
+                SELECT kh.idKH,kh.TenKH, Phai, kh.DiaChi, kh.DienThoai, kh.Email, kh.idQuanHuyen,q.TenQuanHuyen,kh.idNhomKH,nkh.TenNhomKH
+                FROM khachhang kh
+                INNER JOIN quan q ON kh.idQuanHuyen=q.idQuanHuyen
+                INNER JOIN nhomkhachhang nkh ON kh.idNhomKH= nkh.idNhomKH
+                INNER JOIN user u ON nkh.idUser= u.id ".$strUser." ".$strLike."
+                ORDER BY kh.idKH desc";
+
+        if(!empty($search)) {
+            $arrSearch[] = array('%'.$search.'%',PDO::PARAM_STR);
+            $arrSearch[] = array('%'.$search.'%',PDO::PARAM_STR);
+            $arrSearch[] = array('%'.$search.'%',PDO::PARAM_STR);
+        }
+
+        $this->setQuery($query);
+        $result= $this->loadAllRows($arrSearch);
+
         return $result;
 
-		/*$query="SELECT idKH,TenKH, Phai, DiaChi, DienThoai, Email, kh.idQuanHuyen,q.TenQuanHuyen,kh.idNhomKH,nkh.TenNhomKH
-		FROM khachhang kh
-		INNER JOIN quan q ON kh.idQuanHuyen=q.idQuanHuyen
-		INNER JOIN nhomkhachhang nkh ON kh.idNhomKH= nkh.idNhomKH
-		ORDER BY idKH DESC";
-        if($start!==null && $limit!==null) {
-
-            $query.=" LIMIT ?, ?";
-        }
-
-        $this->setquery($query);
-        if($start!==null && $limit!==null) {
-            $result = $this->loadAllRows(array(array($start,PDO::PARAM_INT),array($limit,PDO::PARAM_INT)));
-        } else {
-            $result = $this->loadAllRows();
-        }
-
-
-        return $result;*/
 	}
 
-    public function getCustomerslimit($start,$limit)
+    public function getCustomerslimit($start,$limit,$search='')
     {
 
+        $arrSearch=array();
 
-        $result = $this->getCustomers($start,$limit);
+        $strLike = '';
+        $strUser='';
+        if(isset($_SESSION['loaiuser']) && $_SESSION['loaiuser']=='thanhvien'){
+            $strUser='WHERE u.id = ?';
+            if(!empty($search)){
+                $strLike = 'AND (kh.TenKH like ? OR kh.DienThoai LIKE ? or kh.DiaChi LIKE ?)';
+            }
+            $arrSearch[] = array($_SESSION['userid'],PDO::PARAM_INT);
 
+        }
+
+        if(isset($_SESSION['loaiuser']) && $_SESSION['loaiuser']=='admin'){
+            $strUser='';
+            if(!empty($search)){
+                $strLike = 'WHERE kh.TenKH like ? OR kh.DienThoai LIKE ? or kh.DiaChi LIKE ?';
+            }
+
+        }
+
+        $query="SELECT kh.idKH,kh.TenKH, Phai, kh.DiaChi, kh.DienThoai, kh.Email, kh.idQuanHuyen,q.TenQuanHuyen,kh.idNhomKH,nkh.TenNhomKH
+                FROM khachhang kh
+                INNER JOIN quan q ON kh.idQuanHuyen=q.idQuanHuyen
+                INNER JOIN nhomkhachhang nkh ON kh.idNhomKH= nkh.idNhomKH
+                INNER JOIN user u ON nkh.idUser= u.id ".$strUser." ".$strLike."
+                ORDER BY kh.idKH desc
+                LIMIT ?,? ";
+
+        if(!empty($search)) {
+            $arrSearch[] = array('%'.$search.'%',PDO::PARAM_STR);
+            $arrSearch[] = array('%'.$search.'%',PDO::PARAM_STR);
+            $arrSearch[] = array('%'.$search.'%',PDO::PARAM_STR);
+        }
+
+        $arrSearch[] =array($start,PDO::PARAM_INT);
+        $arrSearch[] =array($limit,PDO::PARAM_INT);
+        $this->setQuery($query);
+        $result= $this->loadAllRows($arrSearch);
         return $result;
+
     }
 
     public function  getDistricts()

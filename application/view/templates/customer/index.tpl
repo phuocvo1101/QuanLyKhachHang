@@ -2,9 +2,10 @@
 <script type="text/javascript">
 
 
-    function getPage(pages,start,limit)
+    function getPage(pages,start,limit,search)
     {
 
+        var search=$("#search").val();
         $.ajax({
 
             url : "index.php?controller=customer&action=indexAjax",
@@ -14,10 +15,11 @@
             data : {
                 pages:pages,
                 start:start,
-                limit:limit
+                limit:limit,
+                search:search
             },
             success : function (result){
-               // alert('abc');die();
+               ;
                 $('#data').html(result.data);
                 $('#phantrang').html(result.phantrang);
             }
@@ -52,6 +54,9 @@
             }
 
         });
+        $("#ok").click(function(){
+            getPage();
+        });
 
     });
 
@@ -66,11 +71,21 @@
 			</ul>
 			
 		</div>
-    <br />
+        <br />
 
 		<div>
 			<p align="center"><label id="tieude">Quan Ly Khách Hàng</label>:<label id="tieude1">Danh sách khách hàng</label></p>
 		</div>
+
+        <div align="center">
+            <table>
+                <tr>
+                    <td> <input type="text" name="search" id="search" placeholder="search: customername, address, phone..." size="40px" /></td>
+                    <td> <input type="button" name="ok" id="ok" value="search" /></td>
+                </tr>
+            </table>
+
+        </div>
 		<div>
 			<table align="center" id="danhsach">
                 <thead>
@@ -115,7 +130,7 @@
 		<div id="phantrang">
 			<table align="center" border="1px">
 				<tr>
-					<td>{$listPage}</td>
+					<td>{if isset($listPage)}{$listPage}{/if}</td>
 				</tr>
 			</table>
 		</div>

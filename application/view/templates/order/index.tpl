@@ -2,9 +2,10 @@
 <script type="text/javascript">
 
 
-    function getPage(pages,start,limit)
+    function getPage(pages,start,limit,search)
     {
 
+        search= $('#search').val();
         $.ajax({
 
             url : "index.php?controller=order&action=indexAjax",
@@ -14,7 +15,8 @@
             data : {
                 pages:pages,
                 start:start,
-                limit:limit
+                limit:limit,
+                search:search
             },
             success : function (result){
                 // alert('abc');die();
@@ -52,6 +54,9 @@
             }
 
         });
+        $('#ok').click(function(){
+           getPage();
+        });
 
     });
 
@@ -71,6 +76,16 @@
     <div>
         <p align="center"><label id="tieude">Quản Lý Đơn Hàng</label>:<label id="tieude1">Danh sách Đơn Hàng</label></p>
     </div>
+
+    <div>
+        <table align="center">
+            <tr>
+                <td><input type="text" name="search" id="search" placeholder="search: productname, customername" size="35"/></td>
+                <td><input type="button" name="ok" id="ok" value="search"></td>
+            </tr>
+        </table>
+    </div>
+
     <div>
         <table align="center" id="danhsach">
             <thead>

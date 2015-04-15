@@ -43,8 +43,10 @@ class UserController extends  BaseController
 		header('location:index.php?controller=user&action=login');
 	}
 
+
     public function indexAction()
     {
+
        $limit= isset($_REQUEST['limit'])? $_REQUEST['limit'] : 4;
         $users= $this->userModel->getUsers();
        $pagernation = new Pagination($limit);
@@ -52,7 +54,9 @@ class UserController extends  BaseController
         $limit=(int)$pagernation->limit;
         $totalRecord= count($users);
         $totalPages = $pagernation->totalPages($totalRecord);
-
+      //  $this->template->assign('start',$start);
+       // $this->template->assign('limit',$limit);
+       // $this->template->assign('pages',$totalPages);
        $listPages= $pagernation->listPages($totalPages);
         $users1= $this->userModel->getUserLimit($start,$limit);
 
@@ -63,8 +67,11 @@ class UserController extends  BaseController
 
     public function indexAjaxAction()
     {
+        $search = isset($_POST['search'])?$_POST['search']:'';
+        $loaiuserseach = isset($_POST['loaiuserseach'])?$_POST['loaiuserseach']:'';
+
         $limit= isset($_REQUEST['limit'])? $_REQUEST['limit'] : 4;
-        $users= $this->userModel->getUsers();
+        $users= $this->userModel->getUsers($search,$loaiuserseach);
         $pagernation = new Pagination($limit);
         $start=(int) $pagernation->start();
         $limit=(int)$pagernation->limit;
@@ -72,10 +79,18 @@ class UserController extends  BaseController
         $totalPages = $pagernation->totalPages($totalRecord);
 
         $listPages= $pagernation->listPages($totalPages);
-        $users1= $this->userModel->getUserLimit($start,$limit);
+        $users1= $this->userModel->getUserLimit($start,$limit,$search,$loaiuserseach);
+        $this->template->assign('start',$start);
+        $this->template->assign('limit',$limit);
+        $this->template->assign('pages',$totalPages);
 
         $this->template->assign('listPages',$listPages);
-        $phantrang = $this->template->fetch('user/listpageindex.tpl');
+        if($listPages=='') {
+            $phantrang ='';
+        } else{
+            $phantrang = $this->template->fetch('user/listpageindex.tpl');
+        }
+
         $this->template->assign('users',$users1);
         $data = $this->template->fetch('user/dataindex.tpl');
 
@@ -83,6 +98,8 @@ class UserController extends  BaseController
         echo json_encode($result);
         exit();
     }
+
+
     public function createAction()
     {
         $id=$_SESSION['userid'];

@@ -29,16 +29,16 @@ class GroupController extends BaseController
     }
     public function indexAjaxAction()
     {
-
+        $search = isset($_POST['search'])?$_POST['search']:'';
         $limit= isset($_REQUEST['limit'])? $_REQUEST['limit']: 2;
-        $groups= $this->groupModel->getGroups();
+        $groups= $this->groupModel->getGroups($search);
         $totalRecord = count($groups);
         $pagination = new Pagination($limit);
         $start = (int)$pagination->start();
         $limit= (int)$pagination->limit;
         $totalPages= $pagination->totalPages($totalRecord);
 
-        $groups1 = $this->groupModel->getGroupLimit($start,$limit);
+        $groups1 = $this->groupModel->getGroupLimit($start,$limit,$search);
 
         $listPages= $pagination->listPages($totalPages);
 
@@ -46,7 +46,12 @@ class GroupController extends BaseController
         $this->template->assign('listPages',$listPages);
 
         $data= $this->template->fetch('group/dataindex.tpl');
-        $phantrang = $this->template->fetch('group/listpageindex.tpl');
+        if($listPages==''){
+            $phantrang="";
+        }else{
+            $phantrang = $this->template->fetch('group/listpageindex.tpl');
+        }
+
 
         $result = array("data"=>$data,"phantrang"=>$phantrang);
 

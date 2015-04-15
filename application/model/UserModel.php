@@ -12,11 +12,38 @@ class UserModel extends Database
 		
 		return $result;
 	}
-    public function getUsers()
+    public function getUsers($search="",$searchloaiuser="")
     {
-        $query= 'SELECT id, username, password,fullname,email,loaiuser  from user';
+        $arrSearch=array();
+
+        if(!empty($search) && empty($searchloaiuser)) {
+            $query="SELECT id, username, password,fullname, email, loaiuser  from user WHERE username LIKE ?";
+            $arrSearch=array(array('%'.$search.'%',PDO::PARAM_STR));
+        } elseif(empty($search) && !empty($searchloaiuser)){
+            $query="SELECT id, username, password,fullname, email, loaiuser  from user WHERE loaiuser LIKE ?";
+            $arrSearch=array(array($searchloaiuser,PDO::PARAM_STR));
+        }elseif(!empty($search) && !empty($searchloaiuser)){
+            $query="SELECT id, username, password,fullname, email, loaiuser  from user WHERE username LIKE ? and loaiuser LIKE ?";
+            $arrSearch=array(
+                array('%'.$search.'%',PDO::PARAM_STR),
+                array($searchloaiuser,PDO::PARAM_STR)
+            );
+        }else{
+            $query= 'SELECT id, username, password,fullname,email,loaiuser  from user';
+        }
+
         $this->setQuery($query);
-        $result= $this->loadAllRows();
+        $result= $this->loadAllRows($arrSearch);
+        return $result;
+    }
+    public function searchUser($search)
+    {
+        $query="SELECT id, username, password,fullname, email, loaiuser  from user WHERE username LIKE ";
+        $query=$query."'"."%".$search."%"."'";
+        $this->setQuery($query);
+        $result= $this->loadAllRows(array(
+            array($search,PDO::PARAM_STR)
+        ));
         return $result;
     }
     public function getUser($id)
@@ -29,11 +56,30 @@ class UserModel extends Database
         return $result;
     }
 
-    public function getUserLimit($start,$limit)
+    public function getUserLimit($start,$limit,$search='',$searchloaiuser='')
     {
-        $query= 'SELECT id, username, password,fullname,loaiuser,  email from user order by id desc LIMIT ?,?';
+        $arrSearch=array();
+
+        if(!empty($search) && empty($searchloaiuser)) {
+            $query= 'SELECT id, username, password, fullname, loaiuser,  email from user WHERE username LIKE ? order by id desc LIMIT ?,?';
+            $arrSearch =array(array('%'.$search.'%',PDO::PARAM_STR),array($start,PDO::PARAM_INT),array($limit,PDO::PARAM_INT));
+        } elseif(empty($search) && !empty($searchloaiuser)){
+            $query= 'SELECT id, username, password,fullname,loaiuser,  email from user WHERE loaiuser LIKE ? order by id desc LIMIT ?,?';
+            $arrSearch =array(array($searchloaiuser,PDO::PARAM_STR),array($start,PDO::PARAM_INT),array($limit,PDO::PARAM_INT));
+        }elseif(!empty($search) && !empty($searchloaiuser)){
+            $query= 'SELECT id, username, password,fullname,loaiuser,  email from user WHERE username LIKE ? AND loaiuser LIKE ? order by id desc LIMIT ?,?';
+            $arrSearch =array(
+                array('%'.$search.'%',PDO::PARAM_STR),
+                array($searchloaiuser,PDO::PARAM_STR),
+                array($start,PDO::PARAM_INT),
+                array($limit,PDO::PARAM_INT));
+        }else{
+            $query= 'SELECT id, username, password,fullname,loaiuser,  email from user order by id desc LIMIT ?,?';
+            $arrSearch =array(array($start,PDO::PARAM_INT),array($limit,PDO::PARAM_INT));
+        }
+
         $this->setquery($query);
-        $result= $this->loadAllRows(array(array($start,PDO::PARAM_INT),array($limit,PDO::PARAM_INT)));
+        $result= $this->loadAllRows($arrSearch);
         return $result;
     }
     public function createUser($params)

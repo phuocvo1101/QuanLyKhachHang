@@ -21,14 +21,16 @@ class OrderController extends BaseController
         $listPages= $pagenation->listPages($totalPages);
 
         $orders1= $this->OrderModel->getOrdersLimit($start,$limit);
+        //var_dump($orders1);die();
         $this->template->assign('orders',$orders1);
         $this->template->assign('listPages',$listPages);
         return $this->template->fetch('order/index.tpl');
     }
     public function indexAjaxAction()
     {
+        $search= isset($_POST['search'])? $_POST['search']:'';
         $limit= isset($_GET['limit'])?$_GET['limit']:3;
-        $orders= $this->OrderModel->getOrders();
+        $orders= $this->OrderModel->getOrders($search);
         $totalRecord= count($orders);
         $pagenation = new Pagination($limit);
         $start=(int)$pagenation->start();
@@ -36,12 +38,17 @@ class OrderController extends BaseController
         $totalPages= $pagenation->totalPages($totalRecord);
         $listPages= $pagenation->listPages($totalPages);
 
-        $orders1= $this->OrderModel->getOrdersLimit($start,$limit);
+        $orders1= $this->OrderModel->getOrdersLimit($start,$limit,$search);
         $this->template->assign('orders',$orders1);
         $this->template->assign('listPages',$listPages);
 
         $data= $this->template->fetch('order/dataindex.tpl');
-        $phantrang= $this->template->fetch('order/listpageindex.tpl');
+        if($listPages==''){
+            $phantrang='';
+        }else{
+            $phantrang= $this->template->fetch('order/listpageindex.tpl');
+        }
+
 
         $result= array("data"=>$data,"phantrang"=>$phantrang);
         echo json_encode($result);

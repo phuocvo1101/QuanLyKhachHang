@@ -1,43 +1,77 @@
 <?php
 class GroupModel extends Database
 {
-    public function getGroups($start=null,$limit=null)
+    public function getGroups($search="")
     {
-        $query='select idNhomKH,TenNHomKH,MoTa,nkh.idUser, u.username
-        from nhomkhachhang nkh JOIN user u ON nkh.idUser= u.id';
+        $arrSearch=array();
+        $struser='';
+        $strlike="";
         if(isset($_SESSION['loaiuser']) && $_SESSION['loaiuser']=='thanhvien'){
-            $query= $query.' WHERE idUser='.$_SESSION['userid'].'  ORDER BY idNhomKH DESC';
-        }else{
-            $query= $query.'  ORDER BY idNhomKH DESC';
-        }
-        if($start!==null && $limit!==null) {
+            $struser="WHERE u.id = ?";
+            $arrSearch[]= array($_SESSION['userid'], PDO::PARAM_INT);
 
-            $query.=" LIMIT ?, ?";
+            if(!empty($search)){
+                $strlike= "AND TenNHomKH LIKE ?";
+                $arrSearch[]=array('%'.$search.'%',PDO::PARAM_STR);
+            }
+
+
         }
+        if(isset($_SESSION['loaiuser']) && $_SESSION['loaiuser']=='admin'){
+
+            if(!empty($search)){
+                $strlike= "WHERE TenNHomKH LIKE ? OR u.username LIKE ?";
+                $arrSearch[]=array('%'.$search.'%',PDO::PARAM_STR);
+                $arrSearch[]=array('%'.$search.'%',PDO::PARAM_STR);
+            }
+
+        }
+
+
+        $query="select idNhomKH,TenNHomKH,MoTa,nkh.idUser, u.username
+                from nhomkhachhang nkh JOIN user u ON nkh.idUser= u.id ".$struser." ".$strlike.
+                " ORDER BY idNhomKH DESC";
+        $this->setQuery($query);
+        $result= $this->loadAllRows($arrSearch);
+        return $result;
+
+    }
+    public function getGroupLimit($start,$limit,$search='')
+    {
+        $arrSearch=array();
+        $struser='';
+        $strlike="";
+        if(isset($_SESSION['loaiuser']) && $_SESSION['loaiuser']=='thanhvien'){
+            $struser="WHERE u.id = ?";
+            $arrSearch[] = array($_SESSION['userid'],PDO::PARAM_INT);
+
+            if(!empty($search)){
+                $strlike= "AND TenNHomKH LIKE ?";
+                $arrSearch[]=array('%'.$search.'%',PDO::PARAM_STR);
+            }
+
+
+        }
+        if(isset($_SESSION['loaiuser']) && $_SESSION['loaiuser']=='admin'){
+
+            if(!empty($search)){
+                $strlike= "WHERE TenNHomKH LIKE ? OR u.username LIKE ?";
+                $arrSearch[]=array('%'.$search.'%',PDO::PARAM_STR);
+                $arrSearch[]=array('%'.$search.'%',PDO::PARAM_STR);
+            }
+
+        }
+
+
+        $query="select idNhomKH,TenNHomKH,MoTa,nkh.idUser, u.username
+                from nhomkhachhang nkh JOIN user u ON nkh.idUser= u.id ".$struser." ".$strlike.
+            " ORDER BY idNhomKH DESC LIMIT ?,?";
+
+        $arrSearch[] =array($start,PDO::PARAM_INT);
+        $arrSearch[] =array($limit,PDO::PARAM_INT);
 
         $this->setquery($query);
-        if($start!==null && $limit!==null) {
-            $result = $this->loadAllRows(array(
-                array($start,PDO::PARAM_INT),
-                array($limit,PDO::PARAM_INT)));
-        } else {
-            $result = $this->loadAllRows();
-        }
-       // $this->setQuery($query);
-        //$result = $this->loadAllRows();
-        return $result;
-    }
-    public function getGroupLimit($start,$limit)
-    {
-       /* $query='select idNhomKH,TenNHomKH,MoTa,nkh.idUser, u.username
-        from nhomkhachhang nkh JOIN user u ON nkh.idUser= u.id ORDER BY idNhomKH desc LIMIT ?,?';
-        $this->setQuery($query);
-        $result = $this->loadAllRows(array(
-            array($start,PDO::PARAM_INT),
-            array($limit,PDO::PARAM_INT)
-        ));*/
-        $result= $this->getGroups($start,$limit);
-
+        $result= $this->loadAllRows($arrSearch);
         return $result;
     }
     public function getGroup($idNhomKH)
