@@ -1,40 +1,42 @@
 <?php
 class OrderModel extends Database
 {
-    public function getOrders($start=null,$limit=null)
+    public function getOrders($search='')
     {
+        $arrsearch= array();
+        $strlike='';
+        $struser='';
+        if(isset($_SESSION['loaiuser']) && $_SESSION['loaiuser']=='thanhvien'){
+            $struser=' WHERE d.idUser= ? ';
+            $arrsearch[]= array($_SESSION['userid'],PDO::PARAM_INT);
+            if(!empty($search)){
+                $strlike= ' AND kh.TenKH LIKE ? OR sp.TenSanPham LIKE ? ';
+            }
+        }
+
+        if(isset($_SESSION['loaiuser']) && $_SESSION['loaiuser']=='admin'){
+
+            if(!empty($search)){
+                $strlike= ' Where kh.TenKH LIKE ? OR sp.TenSanPham LIKE ? ';
+            }
+        }
+
         $query = 'SELECT idDonHang, d.idSanPham, SoLuong, d.idKH,d.idUser,sp.TenSanPham,kh.TenKH,us.username FROM donhang d
          JOIN sanpham sp ON d.idSanPham=sp.idSanPham
           JOIN khachhang kh ON d.idKH=kh.idKH
-          JOIN user us ON d.idUser= us.id';
-        if(isset($_SESSION['loaiuser']) && $_SESSION['loaiuser']=='thanhvien'){
-            $query= $query.' WHERE d.idUser='.$_SESSION['userid'].'  ORDER BY idDonHang DESC';
-        }else{
-            $query= $query.'  ORDER BY idDonHang DESC';
-        }
-        if($start!==null && $limit!==null) {
+          JOIN user us ON d.idUser= us.id '.$struser." ".$strlike." ORDER BY idDonHang DESC";
 
-            $query.=" LIMIT ?, ?";
+        if(!empty($search)){
+            $arrsearch[]= array('%'.$search.'%',PDO::PARAM_STR);
+            $arrsearch[]= array('%'.$search.'%',PDO::PARAM_STR);
         }
 
         $this->setquery($query);
-        if($start!==null && $limit!==null) {
-            $result = $this->loadAllRows(array(
-                array($start,PDO::PARAM_INT),
-                array($limit,PDO::PARAM_INT)));
-        } else {
-            $result = $this->loadAllRows();
-        }
-        // $this->setQuery($query);
-        //$result = $this->loadAllRows();
+
+        $result = $this->loadAllRows($arrsearch);
+        //var_dump($result);die();
         return $result;
 
-       /* $this->setQuery($query);
-        $result= $this->loadAllRows();
-        if(!$result){
-            return false;
-        }
-        return $result;*/
 
     }
     public function getOrder($id)
@@ -55,23 +57,42 @@ class OrderModel extends Database
 
     }
 
-    public function getOrdersLimit($start,$limit)
+    public function getOrdersLimit($start,$limit,$search='')
     {
-        /*$query = 'SELECT idDonHang, d.idSanPham, SoLuong, d.idKH,d.idUser,sp.TenSanPham,kh.TenKH,us.username FROM donhang d
+
+        $arrsearch= array();
+        $strlike='';
+        $struser='';
+        if(isset($_SESSION['loaiuser']) && $_SESSION['loaiuser']=='thanhvien'){
+            $struser=' WHERE d.idUser= ? ';
+            $arrsearch[]= array($_SESSION['userid'],PDO::PARAM_INT);
+            if(!empty($search)){
+                $strlike= 'AND kh.TenKH LIKE ? OR sp.TenSanPham LIKE ? ';
+            }
+        }
+
+        if(isset($_SESSION['loaiuser']) && $_SESSION['loaiuser']=='admin'){
+
+            if(!empty($search)){
+                $strlike= ' Where kh.TenKH LIKE ? OR sp.TenSanPham LIKE ? ';
+            }
+        }
+
+        $query = 'SELECT idDonHang, d.idSanPham, SoLuong, d.idKH,d.idUser,sp.TenSanPham,kh.TenKH,us.username FROM donhang d
          JOIN sanpham sp ON d.idSanPham=sp.idSanPham
           JOIN khachhang kh ON d.idKH=kh.idKH
-          JOIN user us ON d.idUser= us.id ORDER BY idDonHang DESC LIMIT ?,?';
-        $this->setQuery($query);
-        $result= $this->loadAllRows(array(
-            array($start,PDO::PARAM_INT),
-            array($limit,PDO::PARAM_INT)
-        ));
-        if(!$result){
-            return false;
-        }
-        return $result;*/
-        $result= $this->getOrders($start,$limit);
+          JOIN user us ON d.idUser= us.id '.$struser." ".$strlike."ORDER BY idDonHang DESC LIMIT ?,?";
 
+        if(!empty($search)){
+            $arrsearch[]= array('%'.$search.'%',PDO::PARAM_STR);
+            $arrsearch[]= array('%'.$search.'%',PDO::PARAM_STR);
+        }
+        $arrsearch[]= array($start,PDO::PARAM_INT);
+        $arrsearch[]= array($limit,PDO::PARAM_INT);
+
+        $this->setquery($query);
+
+        $result = $this->loadAllRows($arrsearch);
         return $result;
 
     }

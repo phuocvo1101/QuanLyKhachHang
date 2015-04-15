@@ -1,22 +1,35 @@
 <?php
 class ProductModel extends Database
 {
-    public function getProducts()
+    public function getProducts($search='')
     {
-        $query='select idSanPham,TenSanPham,GiaSanPham from sanpham';
+        $arrsearch=array();
+        $strlike='';
+        if(!empty($search)){
+            $strlike= 'WHERE TenSanPham LIKE ?';
+            $arrsearch[]= array('%'.$search.'%',PDO::PARAM_STR);
+        }
+        $query='select idSanPham,TenSanPham,GiaSanPham from sanpham '.$strlike.'ORDER BY idSanPham DESC';
         $this->setQuery($query);
-        $result = $this->loadAllRows();
+        $result = $this->loadAllRows($arrsearch);
         return $result;
     }
-    public function getProductLimit($start,$limit)
+    public function getProductLimit($start,$limit,$search='')
     {
-        $query='select idSanPham,TenSanPham,GiaSanPham from sanpham ORDER BY idSanPham desc LIMIT ?,?';
-        $this->setQuery($query);
-        $result = $this->loadAllRows(array(
-            array($start,PDO::PARAM_INT),
-            array($limit,PDO::PARAM_INT)
-        ));
 
+        $arrsearch=array();
+        $strlike='';
+        if(!empty($search)){
+            $strlike= 'WHERE TenSanPham LIKE ?';
+            $arrsearch[]= array('%'.$search.'%',PDO::PARAM_STR);
+        }
+        $query='select idSanPham,TenSanPham,GiaSanPham from sanpham '.$strlike.'
+        ORDER BY idSanPham DESC LIMIT ?,?';
+
+        $arrsearch[]=  array($start,PDO::PARAM_INT);
+        $arrsearch[]=  array($limit,PDO::PARAM_INT);
+        $this->setQuery($query);
+        $result = $this->loadAllRows($arrsearch);
         return $result;
     }
     public function getProduct($idSanPham)

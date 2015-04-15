@@ -16,6 +16,7 @@ class CustomerController extends  BaseController
 	{
 
         $customers = $this->customerModel->getCustomers();
+
         $limit = isset($_REQUEST['limit']) ?  $_REQUEST['limit'] : 10;
 
         $Pagination = new Pagination($limit);//,$base_url
@@ -29,6 +30,10 @@ class CustomerController extends  BaseController
 
 
         $this->template->assign('customers',$customers1);
+
+            $this->template->assign('listPage',$listPage);
+
+
         $this->template->assign('listPage',$listPage);
 
 		return $this->template->fetch('customer/index.tpl');
@@ -37,7 +42,8 @@ class CustomerController extends  BaseController
     public function indexAjaxAction()
     {
 
-        $customers = $this->customerModel->getCustomers();
+        $search = isset($_POST['search'])?$_POST['search']:'';
+        $customers = $this->customerModel->getCustomers($search);
         $limit = isset($_REQUEST['limit']) ?  $_REQUEST['limit'] : 10;
 
         $Pagination = new Pagination($limit);//,$base_url
@@ -46,14 +52,19 @@ class CustomerController extends  BaseController
         $limit = (int)$Pagination->limit; // Số record hiển thị trên một trang
         $stat = (int)$Pagination->start(); // Vị trí của record
 
-        $customers1 = $this->customerModel->getCustomerslimit($stat,$limit);
+        $customers1 = $this->customerModel->getCustomerslimit($stat,$limit,$search);
         $listPage= $Pagination->listPages($totalPages);
 
         $this->template->assign('customers',$customers1);
         $data = $this->template->fetch('customer/dataindex.tpl');
 
         $this->template->assign('listPage',$listPage);
-        $phantrang = $this->template->fetch('customer/listpageindex.tpl');
+        if($listPage==''){
+            $phantrang='';
+        }else{
+            $phantrang = $this->template->fetch('customer/listpageindex.tpl');
+        }
+
 
         $result = array('data'=>$data,'phantrang'=>$phantrang);
 

@@ -1,11 +1,10 @@
-
 <script src="{$PATH_JS}jquery-1.11.2.js"></script>
 <script type="text/javascript">
 
-
-    function getPage(pages,start,limit)
+    function getPage(pages,start,limit,search,loaiuserseach)
     {
-
+        var loaiuserseach= $('#loaiuserselect').val();
+        var search=$("#search").val();
         $.ajax({
 
             url : "index.php?controller=user&action=indexAjax",
@@ -15,7 +14,9 @@
             data : {
                 pages:pages,
                 start:start,
-                limit:limit
+                limit:limit,
+                search:search,
+                loaiuserseach:loaiuserseach
             },
             success : function (result){
 
@@ -39,7 +40,7 @@
             }
         });
         $('#Xoa').click(function(){
-            str=''
+            str='';
             $('input:checked').each(function(){
                 str+= $(this).val()+',';
             });
@@ -48,8 +49,21 @@
                 window.location= "index.php?controller=user&action=delete&listid="+str;
             }
         });
+        $("#ok").click(function(){
+            //search();
+            getPage();
+        });
+
+        $("#loaiuserselect").change(function(){
+               // loaiuser= $(this).val();
+           // search();
+            getPage();
+        });
+
+
     });
 </script>
+
 <form >
 
     <div id="button">
@@ -65,6 +79,25 @@
     <div>
         <p align="center"><label id="tieude">Quan Ly Thanh Vien</label>:<label id="tieude1">Danh Sach Thanh Vien</label></p>
     </div>
+
+    <div align="center">
+        <table>
+            <tr>
+                <td> <input type="text" name="search" id="search" placeholder='     search: username' size="30px" /></td>
+                <td> <input type="button" name="ok" id="ok" value="search" /></td>
+                <td><select id="loaiuserselect">
+                        <option value="">Loại User</option>
+                        <option value="admin">admin</option>
+                        <option value="thanhvien">Thành Viên</option>
+                </select></td>
+            </tr>
+        </table>
+
+    </div>
+    <div align="center">
+        {if isset($message)}{$message}{/if}
+    </div>
+     <p></p>
     <div>
         <table align="center" id="danhsach">
             <thead>
@@ -100,7 +133,7 @@
         <table align="center" border="1px">
             <tr>
                <td>
-                   {$listPages}
+                  {if isset($listPages)} {$listPages}{/if}
                </td>
             </tr>
         </table>

@@ -30,15 +30,16 @@ class ProductController extends BaseController
     public function indexAjaxAction()
     {
 
+        $search= isset($_POST['search'])? $_POST['search']:'';
         $limit= isset($_REQUEST['limit'])? $_REQUEST['limit']: 4;
-        $products= $this->productModel->getProducts();
+        $products= $this->productModel->getProducts($search);
         $totalRecord = count($products);
         $pagination = new Pagination($limit);
         $start = (int)$pagination->start();
         $limit= (int)$pagination->limit;
         $totalPages= $pagination->totalPages($totalRecord);
 
-        $products1 = $this->productModel->getProductLimit($start,$limit);
+        $products1 = $this->productModel->getProductLimit($start,$limit,$search);
 
         $listPages= $pagination->listPages($totalPages);
 
@@ -46,8 +47,11 @@ class ProductController extends BaseController
         $this->template->assign('listPages',$listPages);
 
         $data= $this->template->fetch('product/dataindex.tpl');
-        $phantrang = $this->template->fetch('product/listpageindex.tpl');
-
+        if($listPages==''){
+            $phantrang='';
+        }else{
+            $phantrang = $this->template->fetch('product/listpageindex.tpl');
+        }
         $result = array("data"=>$data,"phantrang"=>$phantrang);
 
         echo json_encode($result);

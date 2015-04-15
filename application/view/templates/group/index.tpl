@@ -3,9 +3,9 @@
 <script type="text/javascript">
 
 
-    function getPage(pages,start,limit)
+    function getPage(pages,start,limit,search)
     {
-
+        var search=$("#search").val();
         $.ajax({
 
             url : "index.php?controller=group&action=indexAjax",
@@ -15,7 +15,8 @@
             data : {
                 pages:pages,
                 start:start,
-                limit:limit
+                limit:limit,
+                search:search
             },
             success : function (result){
 
@@ -48,6 +49,9 @@
                 window.location= "index.php?controller=group&action=delete&listid="+str;
             }
         });
+        $("#ok").click(function(){
+            getPage();
+        });
     });
 </script>
 <form >
@@ -65,6 +69,17 @@
     <div>
         <p align="center"><label id="tieude">Quản Lý Nhóm Khách Hàng</label>:<label id="tieude1">Danh Sách Nhóm Khách Hàng</label></p>
     </div>
+
+    <div align="center">
+        <table>
+            <tr>
+                <td> <input type="text" name="search" id="search" placeholder="search: customergroup or username" size="40px" /></td>
+                <td> <input type="button" name="ok" id="ok" value="search" /></td>
+            </tr>
+        </table>
+
+    </div>
+
     <div>
         <table align="center" id="danhsach">
             <thead>

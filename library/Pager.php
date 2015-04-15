@@ -27,7 +27,7 @@ class Pagination
     - Tìm ra tổng số trang
      */
     public function totalPages($totalRecord){
-        if(isset($_REQUEST['pages'])){
+        if(isset($_REQUEST['pages']) && !empty($_REQUEST['pages'])){
             $totalPages = $_REQUEST['pages'];
         }else{
             $totalPages = ceil($totalRecord/$this->limit);
